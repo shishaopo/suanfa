@@ -6,7 +6,9 @@ package com.ssp.myapp
  * @description
  */
 fun main() {
-
+    val intArray = intArrayOf(5,7,7,8,8,10)
+    val result = searchRange(intArray, 6)
+    println(result.contentToString())
 }
 
 /**
@@ -29,6 +31,47 @@ fun main() {
  */
 fun searchRange(nums: IntArray, target: Int): IntArray {
     val result = IntArray(2) { -1 }
-
+    search(nums, 0, nums.size, target, result)
     return result
 }
+
+private fun search(nums: IntArray, start: Int, end: Int, target: Int, result: IntArray) {
+    if (end < start) {
+        return
+    }
+    if (start == end) {
+        if (nums[start] == target) {
+            if (result[0] == -1) {
+                result[0] = start
+            } else if (start < result[0]) {
+                result[0] = start
+            }
+            if (start > result[1]) {
+                result[1] = start
+            }
+        }
+        return
+    }
+    val mid = start + (end - start) / 2
+    when {
+        nums[mid] > target -> {
+            search(nums, start, mid, target, result)
+        }
+        nums[mid] < target -> {
+            search(nums, mid + 1, end, target, result)
+        }
+        else -> {
+            if (result[0] == -1) {
+                result[0] = mid
+            } else if (mid < result[0]) {
+                result[0] = mid
+            }
+            if (mid > result[1]) {
+                result[1] = mid
+            }
+            search(nums, start, mid, target, result)
+            search(nums, mid + 1, end, target, result)
+        }
+    }
+}
+
