@@ -6,7 +6,7 @@ package com.ssp.myapp
  * @CreateDate:     2021/9/13 4:52 下午
  */
 fun main() {
-    val result = subsets(intArrayOf(1,2,3,4))
+    val result = subsets(intArrayOf(1, 2, 3, 4))
     println(result.joinToString())
 }
 
@@ -23,9 +23,9 @@ fun main() {
 输出：[[],[0]]
  */
 fun subsets(nums: IntArray): List<List<Int>> {
-    val bitN = (1 shl nums.size) - 1
+    val bitN = 1 shl nums.size
     val result = ArrayList<ArrayList<Int>>()
-    for (i in (0..bitN)) {
+    for (i in (0 until bitN)) {
         val currentList = ArrayList<Int>()
         var bitNumber = i
         var shlCount = 0
