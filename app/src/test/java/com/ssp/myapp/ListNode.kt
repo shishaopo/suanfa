@@ -10,3 +10,19 @@ class ListNode(var `val`: Int, var next: ListNode? = null) {
         return "$`val` -> ${next.toString()}"
     }
 }
+
+class TreeNode(var `val`: Int, var left: TreeNode? = null, var right: TreeNode? = null) {
+    override fun toString(): String {
+        val leftStr = if (left != null) {
+            ",left = ${left.toString()}"
+        } else {
+            ""
+        }
+        val rightStr = if (right != null) {
+            ",right = ${right.toString()}"
+        } else {
+            ""
+        }
+        return "(${`val`}${leftStr}${rightStr})"
+    }
+}
